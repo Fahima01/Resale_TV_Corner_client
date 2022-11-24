@@ -30,9 +30,9 @@ const Login = () => {
 
     return (
         <div className='h-[800px] flex justify-center items-center'>
-            <div className='w-96 p-7'>
+            <div className='w-96 p-7 drop-shadow-2xl bg-pink-500 rounded-lg'>
                 <h2 className='text-xl text-center'>Login</h2>
-                <form onSubmit={handleSubmit(handleLogin)}>
+                <form className='' onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Email</span></label>
                         <input type="text"
@@ -40,7 +40,7 @@ const Login = () => {
                                 required: "Email Address is required"
                             })}
                             className="input input-bordered w-full max-w-xs" />
-                        {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
+                        {errors.email && <p className='text-white'>{errors.email?.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Password</span></label>
@@ -51,11 +51,11 @@ const Login = () => {
                             })}
                             className="input input-bordered w-full max-w-xs" />
                         <label className="label"> <span className="label-text">Forget Password?</span></label>
-                        {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
+                        {errors.password && <p className='text-white'>{errors.password?.message}</p>}
                     </div>
                     <input className='btn btn-accent w-full' value="Login" type="submit" />
                     <div>
-                        {loginError && <p className='text-red-600'>{loginError}</p>}
+                        {loginError && <p className='text-white'>{loginError}</p>}
                     </div>
                 </form>
                 <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
