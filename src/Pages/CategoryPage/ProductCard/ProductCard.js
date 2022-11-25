@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setPlaceOrder }) => {
     const { title, image_url, price, seller, location } = product
     return (
         <div className="card border-2  border-x-teal-400 lg:card-side shadow-xl">
@@ -22,7 +22,13 @@ const ProductCard = ({ product }) => {
                             <p className='font-bold'>Seller Name: <span className='text-teal-400'>{seller.name}</span> </p>
                         </div>
                     </div>
-                    <button className="btn btn-primary font-bold text-purple-800">Place order</button>
+
+                    <label
+                        htmlFor="orderPlace-modal"
+                        className="btn btn-primary font-bold text-purple-800"
+                        onClick={() => setPlaceOrder(product)}
+
+                    >Place Order</label>
                 </div>
             </div>
         </div>
