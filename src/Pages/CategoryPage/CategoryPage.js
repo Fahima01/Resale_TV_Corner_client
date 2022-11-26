@@ -25,6 +25,7 @@ const CategoryPage = () => {
             {palceOrder &&
                 <OrderPlaceModal
                     palceOrder={palceOrder}
+                    setPlaceOrder={setPlaceOrder}
                 ></OrderPlaceModal>}
         </div>
     );
