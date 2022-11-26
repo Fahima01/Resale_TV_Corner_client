@@ -17,7 +17,7 @@ const Signup = () => {
     const from = location.state?.from?.pathname || '/';
 
     const googleProvider = new GoogleAuthProvider();
-
+    const notify = () => toast('Here is your toast.')
     const handleGoogleSignIn = () => {
         googleLogin(googleProvider)
             .then(result => {
@@ -32,15 +32,15 @@ const Signup = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-
-                toast('User Created Successfully.')
+                console.log(user)
+                navigate(from, { replace: true });
+                toast('User Singup Sucessfully')
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        navigate(from, { replace: true });
+                        navigate('/');
                     })
                     .catch(err => console.log(err));
             })

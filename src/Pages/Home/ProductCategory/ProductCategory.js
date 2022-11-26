@@ -5,6 +5,8 @@ import ProductCategoryCard from './ProductCategoryCard';
 const ProductCategory = () => {
     const [categrories, setCategories] = useState([])
 
+
+
     useEffect(() => {
         fetch(`http://localhost:5000/product-categories/`)
             .then(res => res.json())
@@ -24,14 +26,6 @@ const ProductCategory = () => {
                 }
 
             </div>
-            {/* {
-                    categrories.map(category =>
-                        <div className='bg-red-400'
-                        key={category.cat_id}>
-                        <Link to={`/categories/${category.cat_id}`}>{category.name}</Link>
-
-                    </div>)
-                } */}
         </div>
     );
 };

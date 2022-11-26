@@ -4,7 +4,7 @@ import OrderPlaceModal from './OrderPlaceModal/OrderPlaceModal';
 import ProductCard from './ProductCard/ProductCard';
 
 const CategoryPage = () => {
-    const products = useLoaderData([])
+    const products = useLoaderData()
     const [palceOrder, setPlaceOrder] = useState(null)
     return (
         <div >
@@ -15,7 +15,7 @@ const CategoryPage = () => {
 
                     {
                         products.map(product => <ProductCard
-                            key={product.id}
+                            key={product._id}
                             product={product}
                             setPlaceOrder={setPlaceOrder}
                         ></ProductCard>)

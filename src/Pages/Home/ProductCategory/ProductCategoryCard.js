@@ -12,7 +12,7 @@ const ProductCategoryCard = ({ category }) => {
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div className="card-actions justify-end">
                     <button className="btn btn-primary">
-                        <Link to={`/categories/${category.cat_id}`}>See Products</Link>
+                        <Link to={`/products/${category.cat_id}`}>See Products</Link>
 
                     </button>
                 </div>
