@@ -9,8 +9,8 @@ const PrivateRoute = ({ children }) => {
 
     if (loading) {
         return <div className="flex flex-row space-x-4">
-            <div className="w-10 h-10 rounded-full animate-spin align-middle
-border border-solid border-green-600 border-t-transparent"></div></div>
+            <div className="w-5 h-5 rounded-full text-center animate-spin items-center
+border-2 border-green-400 border-t-transparent"></div></div>
     }
 
     if (user) {

@@ -40,7 +40,7 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/');
+                        saveUser(data.name, data.email, data.status);
                     })
                     .catch(err => console.log(err));
             })
@@ -48,6 +48,22 @@ const Signup = () => {
                 console.log(error)
                 setSignUPError(error.message)
             });
+    }
+
+    const saveUser = (name, email, status) => {
+        const user = { name, email, status }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                navigate('/')
+            })
     }
 
     return (
@@ -78,6 +94,28 @@ const Signup = () => {
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-white'>{errors.password.message}</p>}
                     </div>
+
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Select</span></label>
+                        <select type="select" {...register("status", {
+                            required: true
+                        })} className="select w-full max-w-xs">
+                            <option disabled selected>User</option>
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                        </select>
+                    </div>
+
+                    {/* <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Email</span></label>
+                        <input type="email" {...register("email", {
+                            required: true
+                        })} className="input input-bordered w-full max-w-xs" />
+                        {errors.email && <p className='text-white'>{errors.email.message}</p>}
+                    </div> */}
+
+
                     <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
                     {signUpError && <p className='text-white'>{signUpError}</p>}
                 </form>
