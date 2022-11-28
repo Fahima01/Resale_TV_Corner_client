@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 
 
@@ -13,11 +14,15 @@ const Signup = () => {
     const [signUpError, setSignUPError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+    const [createUserEmail, setCreateUserEmail] = useState('')
 
+    const [token] = useToken(createUserEmail)
     const from = location.state?.from?.pathname || '/';
+    if (token) {
+        navigate(from, { replace: true });
 
+    }
     const googleProvider = new GoogleAuthProvider();
-    const notify = () => toast('Here is your toast.')
     const handleGoogleSignIn = () => {
         googleLogin(googleProvider)
             .then(result => {
@@ -33,8 +38,6 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                navigate(from, { replace: true });
-                toast('User Singup Sucessfully')
                 const userInfo = {
                     displayName: data.name
                 }
@@ -47,6 +50,7 @@ const Signup = () => {
             .catch(error => {
                 console.log(error)
                 setSignUPError(error.message)
+
             });
     }
 
@@ -62,7 +66,8 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                navigate('/')
+                setCreateUserEmail(email)
+                toast('User Singup Sucessfully')
             })
     }
 

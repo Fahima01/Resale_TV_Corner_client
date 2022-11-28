@@ -1,30 +1,18 @@
-import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../Context/AuthProvider';
+import React from 'react';
 
-const MyOrders = () => {
-    const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
-
-    const { data: bookings = [] } = useQuery({
-        queryKey: ['bookings', user?.email],
+const AllUsers = () => {
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(url, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
-
+            const res = await fetch('http://localhost:5000/users');
             const data = await res.json();
             return data;
         }
-    })
-
-
+    });
     return (
         <div>
-            <h3 className='text-3xl font-bold text-violet-900 my-7 '>MyOrders</h3>
+            <h3 className='text-3xl font-bold text-violet-900 my-7 '>All users</h3>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
 
@@ -41,29 +29,29 @@ const MyOrders = () => {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         {
-                            bookings.map((booking, i) => <tr key={booking._id}>
-                                <th> {i + 1}
-                                    <label>
+                            users.map((user, i) => <tr key={user._id}>
+                                <th className='text-pink-400 ml-3'> {i + 1}
+                                    {/* <label>
                                         <input type="checkbox" className="checkbox" />
-                                    </label>
+                                    </label> */}
                                 </th>
                                 <td>
                                     <div className="flex items-center space-x-3">
 
                                         <div>
-                                            <div className="font-bold">{booking.product}</div>
-                                            <div className="text-sm  font-bold text-green-300">Price: ${booking.price}</div>
+                                            <div className="font-semibold text-lg text-white">{user.name}</div>
+                                            <div className="text-sm  font-bold text-green-300">Price: ${user.price}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    {booking.buyer}
+                                    {user.buyer}
                                     <br />
-                                    <span className="badge badge-ghost badge-sm">Phone:{booking.phone}</span>
+                                    <span className="badge badge-ghost badge-sm">Phone:{user.phone}</span>
                                 </td>
-                                <td>{booking.meetPlace}</td>
+                                <td>{user.meetPlace}</td>
                                 <th>
                                     <button className="btn btn-ghost btn-xs">Proceed</button>
                                 </th>
@@ -77,4 +65,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default AllUsers;
