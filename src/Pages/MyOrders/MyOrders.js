@@ -1,8 +1,7 @@
-import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
-import Loading from '../Shared/Loading/Loading';
+
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -13,7 +12,7 @@ const MyOrders = () => {
         queryFn: async () => {
 
             try {
-                const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+                const res = await fetch(`https://assingment-12-server-nu.vercel.app/bookings?email=${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -91,6 +90,7 @@ border-2 border-red-700 border-t-transparent"></div></div>;
                                 </th>
                             </tr>)
                         }
+
 
                     </tbody>
                 </table>

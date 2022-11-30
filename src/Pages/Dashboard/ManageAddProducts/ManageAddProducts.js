@@ -19,7 +19,7 @@ const ManageAddProducts = () => {
         queryKey: ['productsadd'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/productsadd', {
+                const res = await fetch('https://assingment-12-server-nu.vercel.app/productsadd', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -34,7 +34,7 @@ const ManageAddProducts = () => {
     });
 
     const handleDeleteDoctor = (addproduct) => {
-        fetch(`http://localhost:5000/productsadd/${addproduct._id}`, {
+        fetch(`https://assingment-12-server-nu.vercel.app/productsadd/${addproduct._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -75,7 +75,7 @@ border-2 border-red-700 border-t-transparent"></div></div>
                     </thead>
                     <tbody>
 
-                        {
+                        {addproducts &&
                             addproducts?.map((addproduct, i) => <tr key={addproduct._id}>
                                 <th >
                                     {i + 1}

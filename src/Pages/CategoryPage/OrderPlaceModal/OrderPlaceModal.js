@@ -25,7 +25,7 @@ const OrderPlaceModal = ({ palceOrder, setPlaceOrder }) => {
         console.log(booking)
 
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://assingment-12-server-nu.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

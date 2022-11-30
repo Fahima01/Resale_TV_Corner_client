@@ -8,7 +8,7 @@ const ProductCategory = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product-categories/`)
+        fetch(`https://assingment-12-server-nu.vercel.app/product-categories/`)
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

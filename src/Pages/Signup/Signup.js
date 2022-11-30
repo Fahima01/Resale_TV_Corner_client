@@ -56,7 +56,7 @@ const Signup = () => {
 
     const saveUser = (name, email, status) => {
         const user = { name, email, status }
-        fetch('http://localhost:5000/users', {
+        fetch('https://assingment-12-server-nu.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
