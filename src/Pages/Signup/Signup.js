@@ -100,7 +100,6 @@ const Signup = () => {
                         {errors.password && <p className='text-white'>{errors.password.message}</p>}
                     </div>
 
-
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Select</span></label>
                         <select type="select" {...register("status", {
@@ -111,15 +110,6 @@ const Signup = () => {
                             <option>Seller</option>
                         </select>
                     </div>
-
-                    {/* <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Email</span></label>
-                        <input type="email" {...register("email", {
-                            required: true
-                        })} className="input input-bordered w-full max-w-xs" />
-                        {errors.email && <p className='text-white'>{errors.email.message}</p>}
-                    </div> */}
-
 
                     <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
                     {signUpError && <p className='text-white'>{signUpError}</p>}

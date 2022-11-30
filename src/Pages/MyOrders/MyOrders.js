@@ -21,7 +21,6 @@ const MyOrders = () => {
         }
     })
 
-
     return (
         <div>
             <h3 className='text-3xl font-bold text-violet-900 my-7 '>MyOrders</h3>
@@ -43,7 +42,8 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking, i) => <tr key={booking._id}>
+                            bookings &&
+                            bookings?.map((booking, i) => <tr key={booking._id}>
                                 <th> {i + 1}
                                     <label>
                                         <input type="checkbox" className="checkbox" />

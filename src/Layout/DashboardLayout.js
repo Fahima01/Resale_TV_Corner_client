@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
+import useAdmin from '../hooks/AdminHook';
 
 const DashboardLayout = () => {
+    const { user } = useContext(AuthContext)
+    const [isAdmin] = useAdmin(user?.email)
     return (
         <div>
             <Navbar></Navbar>
@@ -16,17 +20,19 @@ const DashboardLayout = () => {
                 <div className="drawer-side bg-slate-300">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-violet-800 font-bold">
+                        {
+                            isAdmin &&
+                            <>
+                                <li className='bg-violet-300 rounded-lg'>
+                                    <Link to='/dashboard/allusers'>All Users</Link>
+                                </li>
 
-                        <li className='bg-violet-300 rounded-lg mb-3'>
-                            <Link to='/dashboard/buyers'>All Buyers</Link>
-                        </li>
-                        <li className='bg-violet-300 rounded-lg mb-3'>
-                            <Link to='/dashboard/sellers'>All Sellers</Link>
-                        </li>
-                        <li className='bg-violet-300 rounded-lg'>
-                            <Link to='/dashboard/allusers'>All Users</Link>
-                        </li>
+                            </>
 
+                        }
+                        <li className='bg-violet-300 rounded-lg mt-5'>
+                            <Link to='/dashboard/addproducts'>Add Products</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
