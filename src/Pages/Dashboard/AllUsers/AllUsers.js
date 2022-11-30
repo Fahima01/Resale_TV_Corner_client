@@ -12,6 +12,8 @@ const AllUsers = () => {
         }
     });
 
+
+
     const handleAdminRole = (id) => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
@@ -29,6 +31,7 @@ const AllUsers = () => {
             })
 
     }
+
 
     return (
         <div>
