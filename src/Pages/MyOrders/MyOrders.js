@@ -2,24 +2,46 @@ import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
+import Loading from '../Shared/Loading/Loading';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
 
-    const { data: bookings = [] } = useQuery({
+
+    const { data: bookings = [], loading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
 
-            const data = await res.json();
-            return data;
+            try {
+                const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                return data;
+            }
+            catch (error) {
+
+            }
         }
+
+        //     const res = await fetch(url, {
+        //         headers: {
+        //             authorization: `bearer ${localStorage.getItem('accessToken')}`
+        //         }
+        //     });
+
+        //     const data = await res.json();
+        //     return data;
+        // }
+
     })
+    if (loading) {
+        return <div className="flex flex-row space-x-4">
+            <div className="w-5 h-5 rounded-full text-center animate-spin 
+border-2 border-red-700 border-t-transparent"></div></div>;
+    }
 
     return (
         <div>

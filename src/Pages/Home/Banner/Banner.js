@@ -4,20 +4,21 @@ import banner2 from '../../../assets/LED_tv/banner-2.png'
 import banner3 from '../../../assets/LED_tv/banner-3.png'
 
 
+
 const Banner = () => {
     return (
-        <div className="hero h-auto">
+        <div style={{ background: 'rgba(0, 0, 0, 0.5)' }} className="hero h-auto ">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="carousel w-full h-full">
                     <div id="slide1" className="carousel-item relative w-full">
-                        <img src={banner} className="w-full" />
+                        <img src={banner2} className="w-full" />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#slide3" className="btn btn-circle ">❮</a>
                             <a href="#slide2" className="btn btn-circle ">❯</a>
                         </div>
                     </div>
                     <div id="slide2" className="carousel-item relative w-full">
-                        <img src={banner2} className="w-full" />
+                        <img src={banner} className="w-full" />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#slide1" className="btn btn-circle">❮</a>
                             <a href="#slide3" className="btn btn-circle">❯</a>

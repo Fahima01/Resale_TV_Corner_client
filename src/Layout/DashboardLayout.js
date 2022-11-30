@@ -15,7 +15,7 @@ const DashboardLayout = () => {
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content pl-5 pt-5">
                     <Outlet></Outlet>
-                    <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    {/* <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                 </div>
                 <div className="drawer-side bg-slate-300">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
@@ -32,6 +32,9 @@ const DashboardLayout = () => {
                         }
                         <li className='bg-violet-300 rounded-lg mt-5'>
                             <Link to='/dashboard/addproducts'>Add Products</Link>
+                        </li>
+                        <li className='bg-violet-300 rounded-lg mt-5'>
+                            <Link to='/dashboard/manage-products'>Manage Products</Link>
                         </li>
                     </ul>
                 </div>
